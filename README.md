@@ -16,7 +16,7 @@
 
 ---
 
-## Section 1: DevOps Deployment 
+## Section 1: DevOps Agent Deployment of CI/CD Databricks Environments
 - [About This Repository](#About-This-Repository)
 - [Prerequisites](#Prerequisites)
 - [Details of The Solution Accelerator](#Details-of-The-Solution-Accelerator)
