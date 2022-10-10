@@ -24,6 +24,8 @@
 - [Continuous Deployment And Branching Strategy](#Continuous-Deployment-And-Branching-Strategy)
 - [Create Repository](#Create-Repository)
 - [Login To Azure](#Login-To-Azure)
+- [Create Random String Values ](#Create-Random-String-Values ) 
+- [Provide SubscriptionID ](#Provide-SubscriptionID)
 - [Create Main Service Principal](#Create-Main-Service-Principal)
 - [Create Databricks Service Principal](#Create-Databricks-Service-Principal)
 - [Final Snapshot of Github Secrets](#Final-Snapshot-of-Github-Secrets)
