@@ -21,7 +21,7 @@
 - [Prerequisites](#Prerequisites)
 - [Details of The Solution Accelerator](#Details-of-The-Solution-Accelerator)
 - [Databricks as Infrastructure](#Databricks-as-Infrastructure)
-- [Continuous Deployment + Branching Strategy](#Continuous-Deployment-+-Branching-Strategy)
+- [Continuous Deployment And Branching Strategy](#Continuous-Deployment-And-Branching-Strategy)
 - [Create Repository](#Create-Repository)
 - [Create Main Service Principal](#Create-Main-Service-Principal)
 - [Create Databricks Service Principal](#Create-Databricks-Service-Principal)
@@ -110,7 +110,7 @@ In a nutshell, Continuous **Development** _is a partly manual process where deve
 ---
 ---
 
- ## Continuous Deployment + Branching Strategy
+ ## Continuous Deployment And Branching Strategy
 
 The Branching Strategy I have chosen is configured automatically as part of the accelerator. It follows a GitHub Flow paradigm in order to facilitate rapid Continuous Integration, with some nuances. (see Footnote 1 which contains the SST Git Flow Article written by Willie Ahlers for the Data Science Toolkit - This provides a narrative explaining the numbers below)[^1]
 
