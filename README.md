@@ -36,7 +36,7 @@
 
 
 ## Section 2: Interact With Databricks From Local VS Code Using Databricks Connect + Docker Image
-- [About This Repository](#About-This-Repository)
+- [Interact With Databricks From Local VS Code Using Databricks Connect + Docker Image](#Interact-With-Databricks-From-Local-VS-Code-Using-Databricks-Connect-And-Docker)
 ---
 ---
 
@@ -380,8 +380,11 @@ The process for CI/CD in Databricks is thus:
 9. If tests are successful, the Pull Request is **approved**, which will trigger a release pipeline to propagate changes to the PreProduction Environment
 10. The above will happen iteratively, until the PreProduction environment is stable enough for a new release version, at which we Tag the Release Branch with a version number, e.g "v-1.0.1". This will promote changes to the Production Environment. **Release Pipeline for Production Environment not yet complete** 
    
-   
-# Section 2: Interact With Databricks From Local VS Code Using Databricks Connect + Docker Image
+# Section 2
+---
+---
+ 
+# Interact With Databricks From Local VS Code Using Databricks Connect And Docker
 
 In the previous section, we interacted with Databricks API from the DevOps Agent.
 
