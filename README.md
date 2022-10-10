@@ -18,18 +18,18 @@
 
 ## Table of Contents
 - [About This Repository](#About-This-Repository)
-- [Prerequisites](##Prerequisites)
-- [Details of The Solution Accelerator](##Details-of-The-Solution-Accelerator)
-- [Databricks as Infrastructure](##Databricks-as-Infrastructure)
-- [Continuous Deployment + Branching Strategy](##Continuous-Deployment-+-Branching-Strategy)
-- [Create Repository](##Create-Repository)
-- [Create Main Service Principal](##Create-Main-Service-Principal)
-- [Create Databricks Service Principal](##Create-Databricks-Service-Principal)
-- [Final Snapshot of Github Secrets](##Final-Snapshot-of-Github-Secrets)
-- [Retrieve Object Id's](##Retrieve-Object-Ids)
-- [Update Yaml Pipeline Parameters Files](##Update-Yaml-Pipeline-Parameters-Files)
-- [Deploy The Azure Environments](##Deploy-The-Azure-Environments)
-- [Run Machine Learning Scripts](##Run-Machine-Learning-Scripts)
+- [Prerequisites](#Prerequisites)
+- [Details of The Solution Accelerator](#Details-of-The-Solution-Accelerator)
+- [Databricks as Infrastructure](#Databricks-as-Infrastructure)
+- [Continuous Deployment + Branching Strategy](#Continuous-Deployment-+-Branching-Strategy)
+- [Create Repository](#Create-Repository)
+- [Create Main Service Principal](#Create-Main-Service-Principal)
+- [Create Databricks Service Principal](#Create-Databricks-Service-Principal)
+- [Final Snapshot of Github Secrets](#Final-Snapshot-of-Github-Secrets)
+- [Retrieve Object Id's](#Retrieve-Object-Ids)
+- [Update Yaml Pipeline Parameters Files](#Update-Yaml-Pipeline-Parameters-Files)
+- [Deploy The Azure Environments](#Deploy-The-Azure-Environments)
+- [Run Machine Learning Scripts](#Run-Machine-Learning-Scripts)
 
 ---
 ---
