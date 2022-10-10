@@ -374,7 +374,7 @@ The process for CI/CD in Databricks is thus:
 
 7. If the Development Databricks Instance is stable and ready to be promoted to the Test Environment, create a Pull Request from **Main to Release**
 8. Changes will cascade into the UAT Databricks Instance
-9. If tests are successful, the Pull Request is **approved**, which will trigger a release pipeline to propogate changes to the PreProduction Environment
+9. If tests are successful, the Pull Request is **approved**, which will trigger a release pipeline to propagate changes to the PreProduction Environment
 10. The above will happen iteratively, until the PreProduction environment is stable enough for a new release version, at which we Tag the Release Branch with a version number, e.g "v-1.0.1". This will promote changes to the Production Environment. **Release Pipeline for Production Environment not yet complete** 
    
    
