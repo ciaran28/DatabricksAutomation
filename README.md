@@ -98,7 +98,7 @@ For example, they may interact with the Databricks API/CLI by using: <br>
 <br>
 1. VS Code on their local machine, <br>
 2. the Databricks GUI online; or <br>
-3. a YAML Pipeline deployment on a DevOps Agent (e.g. Github Actions or Azure DevOps etc). <br>
+3. a YAML Pipeline deployment on a DevOps Agent (e.g. GitHub Actions or Azure DevOps etc). <br>
 <br>
  
 The programmatic way in which the first two scenarios allow us to interact with the Databricks API is akin to "Continuous **Development**", as opposed to "Continuous **Deployment**". The former is strong on flexibility, however, it is somewhat weak on governance, accountability and reproducibility. <br>
@@ -132,14 +132,14 @@ The Branching Strategy I have chosen is configured automatically as part of the 
   
 - Fork this repository, ensuring the project name is DatabricksAutomation
 - In your Forked Repo, click on 'Actions' and then 'Enable'
-- Within your VS Code , "View" --> "Command Pallette" --> "Git: Clone" --> Select <yourUserName>/DatabricksAutoamtion
+- Within your VS Code , "View" --> "Command Pallette" --> "Git: Clone" --> Select <yourUserName>/DatabricksAutomation
 </details>
 
 ---
 ---
  
 
-## Login To Azure ( All Code Throughout To Go Into VS Code Powershell Terminal )
+## Login To Azure ( All Code Throughout To Go Into VS Code PowerShell Terminal )
 ```ps
 az login
 ```
@@ -157,8 +157,6 @@ echo "Random String One is: $RandomVariable1" `
 ## Provide SubscriptionID 
 ```ps
  
-echo "Enter Your Azure Subsription ID"
-
 $SubscriptionId=( az account show --query id -o tsv )
 ```
 
@@ -177,7 +175,7 @@ az ad sp create-for-rbac -n MainSP_$RandomVariable1 --role Owner --scopes /subsc
 Ensure that the Service Principal names are unique within your Tenant. If not unique, you may see the error "Insufficient privileges to complete the operation"
 
 ## Secrets
-Create Github Secret titled **AZURE_CREDENTIALS** using the output generated from the previous command.
+Create GitHub Secret titled **AZURE_CREDENTIALS** using the output generated from the previous command.
 
 <img width="420" alt="image" src="https://user-images.githubusercontent.com/108273509/192110733-90975739-6f2d-46f3-8fe8-45cb0cf60b20.png">
 
@@ -206,7 +204,7 @@ $DBX_SP_Client_ID=( $DBX_CREDENTIALS.ARM_CLIENT_ID )
 ```
 
 ## Secrets
-Create Github Secrets entitled **ARM_CLIENT_ID**, **ARM_CLIENT_SECRET** and **ARM_TENANT_ID** using the output in VS Code Powershell Terminal. See below.
+Create GitHub Secrets entitled **ARM_CLIENT_ID**, **ARM_CLIENT_SECRET** and **ARM_TENANT_ID** using the output in VS Code PowerShell Terminal. See below.
 
 <img width="656" alt="image" src="https://user-images.githubusercontent.com/108273509/194619649-2ef7e325-a6bb-4760-9a82-1e3b4775adbd.png">
 
@@ -214,9 +212,9 @@ Create Github Secrets entitled **ARM_CLIENT_ID**, **ARM_CLIENT_SECRET** and **AR
 ---
 
  
-## Final Snapshot of Github Secrets
+## Final Snapshot of GitHub Secrets
 
-Secrets in Github should look exactly like below. The secrets are case sensitive, therefore be very cautious when creating. 
+Secrets in GitHub should look exactly like below. The secrets are case sensitive, therefore be very cautious when creating. 
 
 <img width="585" alt="image" src="https://user-images.githubusercontent.com/108273509/194613800-e8a99b1f-1d4f-4710-803f-b2ac0721ff33.png">
 
@@ -260,7 +258,7 @@ if ($User_ObjID -eq "None" ) { $User_ObjID=( az ad sp show --id $AZ_ACCOUNT_ALIA
 - Parameters files can be found at: /.github/workflows/Pipeline_Param/<environment-file-name>
 
 
-We will update the parameters files ( Development.json, UAT.json, PreProduction.json, Production.json). Enter script below into VS Code Powershell Terminal to update files automatically.
+We will update the parameters files ( Development.json, UAT.json, PreProduction.json, Production.json). Enter script below into VS Code PowerShell Terminal to update files automatically.
   
 ```ps
 echo "Enter Your Git Username... "
@@ -305,9 +303,9 @@ Foreach($file in $files)
 ```
 
 
-## Update Github Repo - Git Push
+## Update GitHub Repo - Git Push
 
-- There is a tendency for EOF to default to Windows CRLF (\r\n) in VS Code. Our deployment will use an Ubuntu Image for the Github Action Runner, which will not recognise carriage return \r\n.
+- There is a tendency for EOF to default to Windows CRLF (\r\n) in VS Code. Our deployment will use an Ubuntu Image for the GitHub Action Runner, which will not recognise carriage return \r\n.
 - The command below will convert \r\n to \n , which is the equivalent to changing all files in VS Code from CRLF to LF. It will then promote our local changes to the remote repository. 
 - Run the command below from root folder
 
@@ -329,7 +327,7 @@ git push
  
 ## Deploy The Azure Environments 
 
-- In Github you can manually run the pipeline to deploy the environments to Azure using:
+- In GitHub you can manually run the pipeline to deploy the environments to Azure using:
   - .github\workflows\1-DBX-Manual-Full-Env-Deploy.yml
 
 <img width="1172" alt="image" src="https://user-images.githubusercontent.com/108273509/186510528-29448e4d-1a0e-41b9-a37f-0cd89d226d57.png">
@@ -339,7 +337,7 @@ git push
   
 <img width="1175" alt="image" src="https://user-images.githubusercontent.com/108273509/194638664-fa6e1809-809e-45b2-9655-9312f32f24bb.png">
 
-- Snapshot of completed Github Action deployment 
+- Snapshot of completed GitHub Action deployment 
 
 <img width="810" alt="image" src="https://user-images.githubusercontent.com/108273509/188155303-cfe07a79-0a9d-4a4d-a40a-dea6104b40f1.png">
 
