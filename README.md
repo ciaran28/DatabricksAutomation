@@ -384,7 +384,7 @@ The process for CI/CD in Databricks is thus:
 ---
 ---
  
-# Interact With Databricks From Local VS Code Using Databricks Connect And Docker
+## Interact With Databricks From Local VS Code Using Databricks Connect And Docker
 
 In the previous section, we interacted with Databricks API from the DevOps Agent.
 
