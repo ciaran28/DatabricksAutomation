@@ -31,7 +31,6 @@ jobs:
 
   PR_Main_On_Release:
       needs: Pull_Request_Checks
-      # THIS DEPENDS ON THE CHECKS ABOVE. IF THEY FAIL WE WILL NOT DEPLOY TO TEST.
       # NOTE That Hotfix Branches Will Not Deploy To UAT. Hotfixes Branches Will Be Deployed To PreProduction When HotFix Branch Merged To Release
       name:                     Infra - Feature Merge Request Into Main  - Deploy to Test Env
       runs-on:                  ubuntu-latest
@@ -44,26 +43,29 @@ jobs:
             echo "${{ github.head_ref }}"
             echo "${{ github.base_ref }}"
 
-        - uses:                  actions/checkout@v3
-          with:
-            ref:                   ${{ github.head_ref }} ## THIS MUST BE MAIN AND NOT THE RELEASE
 
-# Testing this. I want to create a boolean, which is later used in an If condition
-# If there is a change to Infra (True), then run az resource deploy bash script. (run everything)
         - uses: dorny/paths-filter@v2
           id: filter
           with:
             filters: |
               workflows:
                 - 'src/**'       
+
+
+# 1.  Checkout Branch
+        - uses:                 actions/checkout@v3
+          with:
+            ref:                ${{ github.head_ref }} ## THIS MUST BE MAIN AND NOT THE RELEASE    
         
-        
+
+# 2.  __Order Important__Login To Main Service Principal
         - name:                 Azure Login - ${{ matrix.environments }}
           uses:                 azure/login@v1
           with:
             creds:              ${{secrets.AZURE_CREDENTIALS}}
-      
 
+
+# 3.  __Order Important__ Create Env Variables From Parameters Files 
         - name:                 Store JSON Param File Variables As Environ Variables
           uses:                 antifree/json-to-variables@v1.0.1
           with:
@@ -76,14 +78,16 @@ jobs:
             filename:           'Infrastructure/DBX_CICD_Deployment/Bicep_Params/${{ matrix.environments }}/Bicep.parameters.json'
             prefix:             param
 
-# 5.  __Order Important__ Create Custom Role
+
+# 4.  __Order Important__ Create Custom Role
         - name:                 Create Databricks Custom Role
           continue-on-error:    true
           run:                  bash ./.github/workflows/Utilities/Utils-Databricks-Create-Custom-Role.sh
           env:
             environment:        ${{ matrix.environments }}
 
-        # Only run if file path !infra AND merging into main, then don't run this!
+
+# 5.  Deploy Azure Resources    (BICEP) 
         - name:                 Deploy DBX CICD Azure Resources
           if:                   steps.filter.outputs.workflows != 'true'
           run:                  bash ./.github/workflows/Utilities/Utils-Azure-Resources.sh
@@ -91,6 +95,7 @@ jobs:
             environment:        ${{ matrix.environments }}
 
 
+# 6.  __Order Important__ Asign RBAC Permission
         - name:                 Assign RBAC Permissions
           if:                   steps.filter.outputs.workflows != 'true'
           run:                  sh ./.github/workflows/Utilities/Utils-Assign-RBAC.sh
@@ -98,6 +103,7 @@ jobs:
             environment:        ${{ matrix.environments }}
 
 
+# 7.  __Order Important__ Authenticate to DBX Service Principal + Set AAD Tokens As Env Variable
         - name:                 Authenticate to DBX Service Principal + Set AAD Tokens As Env Variables
           run:                  bash ./.github/workflows/Utilities/Utils-DBX-AAD-Token-Autentication.sh
           env:
@@ -105,28 +111,30 @@ jobs:
             ARM_CLIENT_SECRET:  ${{ secrets.ARM_CLIENT_SECRET }}
             ARM_TENANT_ID:      ${{ secrets.ARM_TENANT_ID }}
 
-            
+
+# 8.  __Order Important__ Set Environment Variables For Resources Created On The Fly.
+        - name:                 Set Environment Variables For Resources Created On The Fly.
+          run:                  bash ./.github/workflows/Utilities/Utils-Env-Variables-For-Azure-Resources-Created.sh
+    
+
+# 9.  Set Up Python     
         - name:                 Setup Python
           uses:                 actions/setup-python@v4
           with:
             python-version:     '3.8'
 
-# 7.  __Order Important__ Set Environment Variables For Resources Created On The Fly.
-        - name:                 Set Environment Variables For Resources Created On The Fly.
-          run:                  bash ./.github/workflows/Utilities/Utils-Env-Variables-For-Azure-Resources-Created.sh
-    
 
-        # Update Logic To Determine If PAT Token Has Expired
+# 10.  PAT Token --> Key Vault
         - name:                 Create And Store PAT Token In Key Vault
           run:                  bash ./.github/workflows/Utilities/Utils-Create-PAToken.sh
 
+
+# 11.  Secret Scopes
         - name:                 Save Databricks SP Credentials Within Secret Scopes  
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Scope.sh
         
-# 11.  Store Important Environment Variables In Key Vault. They Can Be Accessed Within DBUtils In Databricks via The Databricks Credentials inside the Secret Scope (above)
-        #- name:                 Store Important Environment Variables In Key Vault
-        #  run:                  bash ./.github/workflows/Utilities/
-          
+
+# 12. Databricks Clusters      
         - name:                 Create DBX Clusters
           if:                   steps.filter.outputs.workflows != 'true'
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Cluster.sh
@@ -134,6 +142,7 @@ jobs:
             environment:        ${{ matrix.environments }}
 
 
+# 13. Databricks Git Config
         - name:                 Create DBX Repos
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Repo-Folders.sh
           env:
@@ -142,26 +151,23 @@ jobs:
             ARM_CLIENT_ID:      ${{ secrets.ARM_CLIENT_ID }}
 
 
-        - name:                   Install + Configure Databricks CLI
-          run:                    bash ./.github/workflows/Utilities/Utils-DBX-CLI-Configure.sh
+# 14. Databricks CLI Config
+        - name:                  Install + Configure Databricks CLI
+          run:                   bash ./.github/workflows/Utilities/Utils-DBX-CLI-Configure.sh
 
-        - run: |
-            echo "${{ github.head_ref }}"
-            echo "${{ github.base_ref }}"
 
+
+# 15. Update Databricks Git Repo 
+        - name:                 Update Test Repo In Test Environment (Main Branch)
+          run:                  bash ./.github/workflows/Utilities/Utils-Git-Pull-DBX-Repo.sh
+          env:
+            BRANCH:             ${{ github.head_ref }} # Should Be Main
+            UPDATE_FOLDER:      'UATFolder'
+
+
+# 16. Databricks Wheel File Creation + DBFS/Cluster Upload
         - name:                   Create Wheel Files & Upload To DBFS
           if:                     steps.filter.outputs.workflows != 'true'
           run:                    bash ./.github/workflows/Utilities/Utils-Create-Wheels-DBFS-Cluster-Upload.sh
           env:
             environment:          ${{ matrix.environments }}
-
-        # INCLUDE GIT PULL HERE SO THAT THE UAT ENVIRONMENT HAS THE MOST UP TO DATE VERSION OF THE MAIN BRANCH -- 
-        - run: |
-            echo "${{ github.head_ref }}"
-            echo "${{ github.base_ref }}"
-
-        - name:                 Update Test Repo In Test Environment (Main Branch)
-          run:                  bash ./.github/workflows/Utilities/Utils-Git-Pull-DBX-Repo.sh
-          env:
-            BRANCH:          ${{ github.head_ref }} # Should Be Main
-            UPDATE_FOLDER:  'UATFolder'

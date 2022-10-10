@@ -1,6 +1,6 @@
 
 
-### Lets Retrieve Importand Variables That Are Important For Later Steps
+### Lets Retrieve Important Variables That Are Important For Later Steps
 
 DATABRICKS_ORDGID=$(az databricks workspace list -g $param_parameters_resourceGroupName_value --query "[].workspaceId" -o tsv)
 DATABRICKS_INSTANCE="$(az databricks workspace list -g $param_parameters_resourceGroupName_value --query "[].workspaceUrl" -o tsv)"
