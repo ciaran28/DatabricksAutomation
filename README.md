@@ -23,6 +23,7 @@
 - [Databricks as Infrastructure](#Databricks-as-Infrastructure)
 - [Continuous Deployment And Branching Strategy](#Continuous-Deployment-And-Branching-Strategy)
 - [Create Repository](#Create-Repository)
+- [Login To Azure](#Login-To-Azure)
 - [Create Main Service Principal](#Create-Main-Service-Principal)
 - [Create Databricks Service Principal](#Create-Databricks-Service-Principal)
 - [Final Snapshot of Github Secrets](#Final-Snapshot-of-Github-Secrets)
@@ -138,9 +139,10 @@ The Branching Strategy I have chosen is configured automatically as part of the 
 ---
 ---
  
+## Login To Azure
+- All Code Throughout To Go Into VS Code PowerShell Terminal 
 
-## Login To Azure ( All Code Throughout To Go Into VS Code PowerShell Terminal )
-```ps
+ ```ps
 az login
 ```
 
