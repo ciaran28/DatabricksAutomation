@@ -16,7 +16,7 @@
 
 ---
 
-## Table of Contents
+## Section 1: DevOps Deployment 
 - [About This Repository](#About-This-Repository)
 - [Prerequisites](#Prerequisites)
 - [Details of The Solution Accelerator](#Details-of-The-Solution-Accelerator)
@@ -34,6 +34,9 @@
 - [Deploy The Azure Environments](#Deploy-The-Azure-Environments)
 - [Run Machine Learning Scripts](#Run-Machine-Learning-Scripts)
 
+
+## Section 2: Interact With Databricks From Local VS Code Using Databricks Connect + Docker Image
+- [About This Repository](#About-This-Repository)
 ---
 ---
 
