@@ -30,6 +30,8 @@ GIT_PROVIDER=$( jq -r '.Repo_Configuration[].provider ' <<< $JSON )
 echo "GIT_PROVIDER"
 echo $GIT_PROVIDER
 
+
+
 for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     _jq() {
         echo ${row} | base64 --decode | jq -r ${1}
@@ -71,7 +73,8 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
             -H 'Content-Type: application/json' \
             -d $JSON_STRING \
             https://$workspaceUrl/api/2.1/jobs/create )
-    )
+    
+done
 
 
     #createDatabricksJob=$(curl -X POST -H "Authorization: Bearer $token" -H "X-Databricks-Azure-SP-Management-Token: $mgmt_access_token" -H "X-Databricks-Azure-Workspace-Resource-Id: $wsId" -H "Content-Type: application/json" -d \
@@ -92,7 +95,6 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     #}' https://$workspaceUrl/api/2.1/jobs/create )
 
 
-done
 
 
 
