@@ -79,16 +79,16 @@ jobs:
             ARM_CLIENT_SECRET:  ${{ secrets.ARM_CLIENT_SECRET }}
             ARM_TENANT_ID:      ${{ secrets.ARM_TENANT_ID }}
 
-# Test Jobs
-        - name:                 Deploy DBX CICD Azure Resources
-          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
-          env:
-            environment:        ${{ matrix.environments }}
 
 # 8.  __Order Important__ Set Environment Variables For Resources Created On The Fly.
         - name:                 Set Environment Variables For Resources Created On The Fly.
           run:                  bash ./.github/workflows/Utilities/Utils-Env-Variables-For-Azure-Resources-Created.sh
 
+# Test Jobs
+        - name:                 Create Databricks Jobs
+          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
+          env:
+            environment:        ${{ matrix.environments }}
 
 # 9.  Set Up Python
         - name:                 Setup Python
