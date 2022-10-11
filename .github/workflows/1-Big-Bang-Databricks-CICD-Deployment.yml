@@ -57,13 +57,6 @@ jobs:
             environment:        ${{ matrix.environments }}
 
 
-# Test Jobs
-        - name:                 Deploy DBX CICD Azure Resources
-          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
-          env:
-            environment:        ${{ matrix.environments }}
-
-
 # 5.  Deploy Azure Resources    (BICEP) 
         #- name:                 Deploy DBX CICD Azure Resources
         #  run:                  bash ./.github/workflows/Utilities/Utils-Azure-Resources.sh
@@ -85,6 +78,12 @@ jobs:
             ARM_CLIENT_ID:      ${{ secrets.ARM_CLIENT_ID }}
             ARM_CLIENT_SECRET:  ${{ secrets.ARM_CLIENT_SECRET }}
             ARM_TENANT_ID:      ${{ secrets.ARM_TENANT_ID }}
+
+# Test Jobs
+        - name:                 Deploy DBX CICD Azure Resources
+          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
+          env:
+            environment:        ${{ matrix.environments }}
 
 # 8.  __Order Important__ Set Environment Variables For Resources Created On The Fly.
         - name:                 Set Environment Variables For Resources Created On The Fly.
