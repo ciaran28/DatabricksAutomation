@@ -4,17 +4,31 @@ LIST_CLUSTERS=$(curl -X GET -H "Authorization: Bearer $TOKEN" \
                     -H 'Content-Type: application/json' \
                     https://$DATABRICKS_INSTANCE/api/2.0/clusters/list )
 
+echo "List Clusters"
+echo $LIST_CLUSTERS
+
 
 CLUSTER_NAMES=$( jq -r '[.clusters[].cluster_name]' <<< "$LIST_CLUSTERS")
 
-
+echo "CLUSTER_NAMES"
+echo $CLUSTER_NAMES
 
 echo "Ingest JSON Environment File"
 JSON=$( jq '.' .github/workflows/Pipeline_Param/$environment.json)
 #echo "${JSON}" | jq
 
+echo "JSON File"
+echo $JSON
+
 REPO_URL=$( jq -r '[.Repo_Configuration[].url]' <<< "$JSON")
+
+echo "REPO_URL"
+echo $REPO_URL
+
 GIT_PROVIDER=$( jq -r '[.Repo_Configuration[].provider]' <<< "$JSON")
+
+echo "GIT_PROVIDER"
+echo $GIT_PROVIDER
 
 for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     _jq() {
@@ -22,6 +36,9 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     }
 
     CLUSTER_ID=$( jq -r  '.clusters[] | select( .cluster_name | contains("dbx-sp-cluster")) | .cluster_id ' <<< "$listClusters")
+    
+    echo "CLUSTER_ID"
+    echo $CLUSTER_ID
     
     JSON_STRING=$( jq -n -c \
                     --arg name "$(_jq '.name')" \
