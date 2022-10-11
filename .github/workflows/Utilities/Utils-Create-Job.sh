@@ -20,12 +20,12 @@ JSON=$( jq '.' .github/workflows/Pipeline_Param/$environment.json)
 echo "JSON File"
 echo $JSON
 
-REPO_URL=$( jq -r '.Repo_Configuration[].url -o tsv ' <<< "$JSON")
+REPO_URL=$( jq -r '.Repo_Configuration[].url ' <<< "$JSON")
 
 echo "REPO_URL"
 echo $REPO_URL
 
-GIT_PROVIDER=$( jq -r '[.Repo_Configuration[].provider]' <<< "$JSON")
+GIT_PROVIDER=$( jq -r ' .Repo_Configuration[].provider ' <<< "$JSON")
 
 echo "GIT_PROVIDER"
 echo $GIT_PROVIDER
