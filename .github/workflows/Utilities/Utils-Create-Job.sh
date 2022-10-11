@@ -35,6 +35,8 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
         echo ${row} | base64 --decode | jq -r ${1}
     }
 
+    echo "in for loop"
+
     CLUSTER_ID=$( jq -r  '.clusters[] | select( .cluster_name | contains("dbx-sp-cluster")) | .cluster_id ' <<< "$LIST_CLUSTERS")
     
     echo "CLUSTER_ID"
