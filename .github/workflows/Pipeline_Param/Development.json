@@ -65,28 +65,13 @@
     "Jobs":  [
 
                 {
-                    "name":  "Extract and Prepare Data",
+                    "name":  "Test Job",
                     "cluster_name": "dbx-sp-cluster",
                     "notebook_task": {
-                    "notebook_path": "",
+                    "notebook_path": "DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis",
                     "source": "GIT"
-                    }      
-                },
-                {
-                    "name":  "Train Model",
-                    "cluster_name": "dbx-sp-cluster",
-                    "notebook_task": {
-                    "notebook_path": "",
-                    "source": "GIT"
-                    }      
-                },
-                {
-                    "name":  "Evaluate",
-                    "cluster_name": "dbx-sp-cluster",
-                    "notebook_task": {
-                    "notebook_path": "",
-                    "source": "GIT"
-                    }      
+                    },
+                    "git_branch": "main"  
                 }
              ],
     "Git_Configuration":  [
