@@ -65,7 +65,8 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                                 "source": $source 
                                 }
                         } 
-                    ] }' )
+                    ] 
+                }' )
 
     CREATE_JOB=$(curl -X POST -H "Authorization: Bearer $TOKEN" \
             -H "X-Databricks-Azure-SP-Management-Token: $MGMT_ACCESS_TOKEN" \
