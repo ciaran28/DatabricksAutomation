@@ -54,26 +54,43 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg git_url "$REPO_URL" \
                     --arg CLUSTER_ID "$CLUSTER_ID" \
                     '{
-                    "name": "Test_Job2",
-                    "existing_cluster_id": $CLUSTER_ID,
-                    "tasks": [
-                        {
-                            "task_key": "Test_Job2",
-                            "notebook_task": {
-                                "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
-                                "source": "GIT"
-                            },
-                            "existing_cluster_id": "1010-175730-znprugpy",
-                            "timeout_seconds": 0,
-                            "email_notifications": {}
-                        }
-                    ],
-                    "git_source": {
-                        "git_url": "https://github.com/ciaran28/DatabricksAutomation",
-                        "git_provider": "gitHub",
-                        "git_branch": "main"
-                        }
+                        "name": "dbx-test-job",
+                        "git_source": {
+                            "git_url": "https://github.com/ciaran28/DatabricksAutomation",
+                            "git_provider": "gitHub",
+                            "git_branch": "main"
+                        },
+                        "tasks": [ 
+                            {
+                                "task_key": "devopsjob",
+                                "existing_cluster_id": "1010-175730-znprugpy",
+                                "notebook_task": { "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis", "source": "GIT" }
+                            } 
+                        ]
                     }' )
+
+
+                    #'{
+                    #"name": "Test_Job2",
+                    #"existing_cluster_id": $CLUSTER_ID,
+                    #"tasks": [
+                    #    {
+                    #        "task_key": "Test_Job2",
+                    #        "notebook_task": {
+                    #            "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
+                    #            "source": "GIT"
+                    #        },
+                    #        "existing_cluster_id": "1010-175730-znprugpy",
+                    #        "timeout_seconds": 0,
+                    #        "email_notifications": {}
+                    #    }
+                    #],
+                    #"git_source": {
+                    #    "git_url": "https://github.com/ciaran28/DatabricksAutomation",
+                    #    "git_provider": "gitHub",
+                    #    "git_branch": "main"
+                    #    }
+                    #}' )
 
         #"/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis"        
     
@@ -87,6 +104,8 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
             -H 'Content-Type: application/json' \
             -d $JSON_STRING \
             https://$DATABRICKS_INSTANCE/api/2.1/jobs/create )
+
+    echo $CREATE_JOB
     
 done
 
