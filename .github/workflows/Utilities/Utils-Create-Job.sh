@@ -50,10 +50,11 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg notebook_path "$(_jq '.notebook_task.notebook_path')"  \
                     --arg source "$(_jq '.notebook_task.source')" \
                     --arg git_branch "$(_jq '.git_branch')" \
+                    --arg git_provider "$GIT_PROVIDER \
                     '{name: $name,
                     "git_source": {
                         "git_url": $REPO_URL,
-                        "git_provider": $GIT_PROVIDER,
+                        "git_provider": $git_provider,
                         "git_branch": $git_branch
                     },
                     "tasks": [ 
