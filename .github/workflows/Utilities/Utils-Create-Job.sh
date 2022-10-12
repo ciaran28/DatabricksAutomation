@@ -56,15 +56,15 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     '{
                         "name": "$name",
                         "git_source": {
-                            "git_url": "$git_url",
+                            "git_url": $git_url,
                             "git_provider": $git_provider,
                             "git_branch": $git_branch
                         },
                         "tasks": [ 
                             {
-                                "task_key": "$name",
-                                "existing_cluster_id": "$CLUSTER_ID",
-                                "notebook_task": { "notebook_path": "$notebook_path", "source": "GIT" }
+                                "task_key": $name,
+                                "existing_cluster_id": $CLUSTER_ID,
+                                "notebook_task": { "notebook_path": $notebook_path, "source": "GIT" }
                             } 
                         ]
                     }' )
