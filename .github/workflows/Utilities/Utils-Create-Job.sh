@@ -39,7 +39,7 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
 
     echo "in for loop"
 
-    CLUSTER_ID=$( jq -r  '.clusters[] | select( .cluster_name | contains("dbx-sp-cluster")) | .cluster_id ' <<< "$LIST_CLUSTERS")
+    CLUSTER_ID=$( jq -r  '.clusters[] | select( .cluster_name == "dbx-sp-cluster" ) | .cluster_id ' <<< "$LIST_CLUSTERS")
     
     echo "CLUSTER_ID"
     echo $CLUSTER_ID
@@ -108,14 +108,6 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     echo $CREATE_JOB
     
 done
-
-
-
-
-
-
-
-
 
 
 
