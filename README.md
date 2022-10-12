@@ -1,8 +1,12 @@
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lvL9kloToEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 ![Banner](docs/images/MLOps_for_databricks_Solution_Acclerator_logo.JPG)
 ---
 ---
  <br>
 
+ https://www.youtube.com/watch?v=h6fOErvWIGI
  
  # Section 1: DevOps Agent Deployment of CI/CD Databricks Environments
 
