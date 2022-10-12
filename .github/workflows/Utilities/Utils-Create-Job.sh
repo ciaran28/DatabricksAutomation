@@ -51,9 +51,11 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg source "$(_jq '.notebook_task.source')" \
                     --arg git_branch "$(_jq '.git_branch')" \
                     --arg git_provider "$GIT_PROVIDER" \
+                    --arg git_url "$REPO_URL" \
+                    --arg CLUSTER_ID "$CLUSTER_ID" \
                     '{name: $name,
                     "git_source": {
-                        "git_url": $REPO_URL,
+                        "git_url": $git_url,
                         "git_provider": $git_provider,
                         "git_branch": $git_branch
                     },
