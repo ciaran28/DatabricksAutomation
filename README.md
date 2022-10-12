@@ -1,8 +1,3 @@
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lvL9kloToEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
 ![Banner](docs/images/MLOps_for_databricks_Solution_Acclerator_logo.JPG)
 ---
 ---
@@ -11,7 +6,6 @@
  https://www.youtube.com/watch?v=h6fOErvWIGI
  
  # Section 1: DevOps Agent Deployment of CI/CD Databricks Environments
-
 ---
  
  ## CI/CD Pathway Diagram
@@ -23,6 +17,7 @@
 ---
 
 ## Section 1: DevOps Agent Deployment of CI/CD Databricks Environments
+- [Youtube Demo](#Youtube-Demo)
 - [About This Repository](#About-This-Repository)
 - [Prerequisites](#Prerequisites)
 - [Details of The Solution Accelerator](#Details-of-The-Solution-Accelerator)
@@ -44,6 +39,11 @@
 ## Section 2: Databricks Connect Local Development (Docker)
 - [Interact With Databricks From Local VS Code Using Databricks Connect + Docker Image](#Interact-With-Databricks-From-Local-VS-Code-Using-Databricks-Connect-And-Docker)
 ---
+---
+
+## Youtube Demo
+
+- Please find Demo for this Accelerator within the link: https://www.youtube.com/watch?v=lvL9kloToEw
 ---
 
 ## About This Repository
