@@ -151,15 +151,6 @@ The Branching Strategy I have chosen is configured automatically as part of the 
 az login
 ```
 
-## Create Random String Values 
-```ps
-$RandomVariable1=for($i=1; $i -le 1; $i++){([char[]]([char]'a'..[char]'z' + [char]'A'..[char]'Z') + 0..9 | sort {get-random})[0..3] -join ''} 
-$RandomVariable2=for($i=1; $i -le 1; $i++){([char[]]([char]'a'..[char]'z' + [char]'A'..[char]'Z') + 0..9 | sort {get-random})[0..3] -join ''} 
- 
-echo "Random String One is: $RandomVariable1" `
-"Random String Two is: $RandomVariable2"
- 
-```
 
 ## Provide SubscriptionID 
 ```ps
@@ -175,7 +166,8 @@ echo "Create The Service Principal"
 
 echo "WARNING: DO NOT DELETE OUTPUT "
 
-az ad sp create-for-rbac -n MainSP_$RandomVariable1 --role Owner --scopes /subscriptions/$SubscriptionId --sdk-auth
+$MainSP= "Main_SP_"+$(Get-Random -Minimum 1000 -Maximum 9999)
+az ad sp create-for-rbac -n $MainSP --role Owner --scopes /subscriptions/$SubscriptionId --sdk-auth
  
 ```
 
@@ -199,8 +191,9 @@ Create GitHub Secret titled **AZURE_CREDENTIALS** using the output generated fro
 echo "Create The Service Principal"
  
 echo "WARNING: DO NOT DELETE OUTPUT"
- 
-$DBX_CREDENTIALS=( az ad sp create-for-rbac -n DatabricksSP_$RandomVariable2 --role Contributor --scopes /subscriptions/$SubscriptionId --query "{ARM_TENANT_ID:tenant, ARM_CLIENT_ID:appId, ARM_CLIENT_SECRET:password}")
+
+$DatabricksSP= "DatabricksSP_"+$(Get-Random -Minimum 1000 -Maximum 9999) 
+$DBX_CREDENTIALS=( az ad sp create-for-rbac -n $DatabricksSP --role Contributor --scopes /subscriptions/$SubscriptionId --query "{ARM_TENANT_ID:tenant, ARM_CLIENT_ID:appId, ARM_CLIENT_SECRET:password}")
 
 echo "Service Principal Credentials"
 $DBX_CREDENTIALS=( $DBX_CREDENTIALS | convertfrom-json )
