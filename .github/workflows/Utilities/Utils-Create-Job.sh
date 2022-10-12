@@ -55,11 +55,19 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg CLUSTER_ID "$CLUSTER_ID" \
                     '{
                     "name": "Test_Job2",
-                    "existing_cluster_id": $CLUSTER_ID ,
-                    "notebook_task": {
-                        "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
-                        "source": "GIT"
-                        },
+                    "existing_cluster_id": $CLUSTER_ID,
+                    "tasks": [
+                        {
+                            "task_key": "Test_Job2",
+                            "notebook_task": {
+                                "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
+                                "source": "GIT"
+                            },
+                            "existing_cluster_id": "1010-175730-znprugpy",
+                            "timeout_seconds": 0,
+                            "email_notifications": {}
+                        }
+                    ],
                     "git_source": {
                         "git_url": "https://github.com/ciaran28/DatabricksAutomation",
                         "git_provider": "gitHub",
