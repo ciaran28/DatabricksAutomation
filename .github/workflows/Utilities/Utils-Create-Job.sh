@@ -69,30 +69,6 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                         ]
                     }' )
 
-
-                    #'{
-                    #"name": "Test_Job2",
-                    #"existing_cluster_id": $CLUSTER_ID,
-                    #"tasks": [
-                    #    {
-                    #        "task_key": "Test_Job2",
-                    #        "notebook_task": {
-                    #            "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
-                    #            "source": "GIT"
-                    #        },
-                    #        "existing_cluster_id": "1010-175730-znprugpy",
-                    #        "timeout_seconds": 0,
-                    #        "email_notifications": {}
-                    #    }
-                    #],
-                    #"git_source": {
-                    #    "git_url": "https://github.com/ciaran28/DatabricksAutomation",
-                    #    "git_provider": "gitHub",
-                    #    "git_branch": "main"
-                    #    }
-                    #}' )
-
-        #"/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis"        
     
     echo $JSON_STRING
 
@@ -110,18 +86,15 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
 done
 
 
+### IGNORE BELOW: Experimental Piece
 
-echo 'clusterID'
-clusterId=$( jq -r  '.clusters[] | select( .cluster_name | contains("dbx-sp-cluster")) | .cluster_id ' <<< "$listClusters")
-echo $clusterId
+
+#echo 'clusterID'
+#clusterId=$( jq -r  '.clusters[] | select( .cluster_name | contains("dbx-sp-cluster")) | .cluster_id ' <<< "$listClusters")
+#echo $clusterId
 #"0609-130637-9rhcw0m1"
-
-
 # Below - The Job ID has hypens 0609-130637-9rhcw0m1 and has issues when you pass it to the api below. It is PARAMOUNT to use double quoutes
 # and single quote around the variable so that it evaluates correctly. 
-
-
-
 
 #createDatabricksJob=$(curl -X POST -H "Authorization: Bearer $token" -H "X-Databricks-Azure-SP-Management-Token: $mgmt_access_token" -H "X-Databricks-Azure-Workspace-Resource-Id: $wsId" -H 'Content-Type: application/json' -d \
 #'{
@@ -129,7 +102,6 @@ echo $clusterId
 #"existing_cluster_id": "'$clusterId'" ,
 #"notebook_task": {"notebook_path": "/Users/ce79c2ef-170d-4f1c-a706-7814efb94898/unittest"}
 #}' https://$workspaceUrl/api/2.1/jobs/create )
-
 
 
 #listJobs=$(curl -X GET -H "Authorization: Bearer $token" -H "X-Databricks-Azure-SP-Management-Token: $mgmt_access_token" -H "X-Databricks-Azure-Workspace-Resource-Id: $wsId" -H 'Content-Type: application/json' https://$workspaceUrl/api/2.1/jobs/list )

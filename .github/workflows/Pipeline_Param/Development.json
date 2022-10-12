@@ -65,13 +65,22 @@
     "Jobs":  [
 
                 {
-                    "name":  "Test_Job_FINAL",
+                    "name":  "Remote_Analysis_Main_Branch",
                     "cluster_name": "dbx-sp-cluster",
                     "notebook_task": {
-                    "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
-                    "source": "GIT"
+                        "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
+                        "source": "GIT"
                     },
                     "git_branch": "main"  
+                },
+                {
+                    "name":  "Remote_Analysis_Test_Branch",
+                    "cluster_name": "dbx-sp-cluster2",
+                    "notebook_task": {
+                        "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
+                        "source": "GIT"
+                    },
+                    "git_branch": "Test"  
                 }
              ],
     "Git_Configuration":  [
