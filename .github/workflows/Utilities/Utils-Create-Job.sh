@@ -70,7 +70,7 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
             -H "X-Databricks-Azure-Workspace-Resource-Id: $WORKSPACE_ID" \
             -H 'Content-Type: application/json' \
             -d $JSON_STRING \
-            https://$workspaceUrl/api/2.1/jobs/create )
+            https://$DATABRICKS_INSTANCE/api/2.1/jobs/create )
     
 done
 
