@@ -166,8 +166,8 @@ echo "Create The Service Principal"
 
 echo "WARNING: DO NOT DELETE OUTPUT "
 
-$MainSP= "Main_SP_"+$(Get-Random -Minimum 1000 -Maximum 9999)
-az ad sp create-for-rbac -n $MainSP --role Owner --scopes /subscriptions/$SubscriptionId --sdk-auth
+$Main_SP_Name= "Main_SP_"+$(Get-Random -Minimum 1000 -Maximum 9999)
+az ad sp create-for-rbac -n $Main_SP_Name --role Owner --scopes /subscriptions/$SubscriptionId --sdk-auth
  
 ```
 
@@ -192,8 +192,8 @@ echo "Create The Service Principal"
  
 echo "WARNING: DO NOT DELETE OUTPUT"
 
-$DatabricksSP= "DatabricksSP_"+$(Get-Random -Minimum 1000 -Maximum 9999) 
-$DBX_CREDENTIALS=( az ad sp create-for-rbac -n $DatabricksSP --role Contributor --scopes /subscriptions/$SubscriptionId --query "{ARM_TENANT_ID:tenant, ARM_CLIENT_ID:appId, ARM_CLIENT_SECRET:password}")
+$Databricks_SP_Name= "DatabricksSP_"+$(Get-Random -Minimum 1000 -Maximum 9999) 
+$DBX_CREDENTIALS=( az ad sp create-for-rbac -n $Databricks_SP_Name --role Contributor --scopes /subscriptions/$SubscriptionId --query "{ARM_TENANT_ID:tenant, ARM_CLIENT_ID:appId, ARM_CLIENT_SECRET:password}")
 
 echo "Service Principal Credentials"
 $DBX_CREDENTIALS=( $DBX_CREDENTIALS | convertfrom-json )
