@@ -3,7 +3,6 @@
 ---
  <br>
 
- https://www.youtube.com/watch?v=h6fOErvWIGI
  
  # Section 1: DevOps Agent Deployment of CI/CD Databricks Environments
 ---
@@ -44,6 +43,7 @@
 ## Youtube Demo
 
 - Please find Demo for this Accelerator within the link: https://www.youtube.com/watch?v=lvL9kloToEw
+- **Video Not Yet Complete**
 ---
 
 ## About This Repository
