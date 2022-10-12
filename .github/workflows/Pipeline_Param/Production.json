@@ -20,7 +20,7 @@
                                                "DBX_Custom_Role_DSToolkit",
                                                "Key Vault Administrator"
                                            ],
-                                 "roleBeneficiaryObjID":  "b54a7eec-1208-4e01-83a4-bbcc5da39c85",
+                                 "roleBeneficiaryObjID":  "a7f82f2b-93ea-4453-81e7-004b22c521e8",
                                  "Description":  "Databricks SPN",
                                  "principalType":  "ServicePrincipal"
                              }
@@ -41,17 +41,17 @@
                                        }
                      }
                  ],
-    "Jobs": [
-                {
-                    "name":  "Remote_Analysis_Main_Branch",
-                    "cluster_name": "dbx-sp-cluster",
-                    "notebook_task": {
-                        "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
-                        "source": "GIT"
-                    },
-                    "git_branch": "release-1.0.x"  
-                }
-            ],
+    "Jobs":  [
+                 {
+                     "name":  "Remote_Analysis_Main_Branch",
+                     "cluster_name":  "dbx-sp-cluster",
+                     "notebook_task":  {
+                                           "notebook_path":  "src/tutorial/scripts/framework_testing/remote_analysis",
+                                           "source":  "GIT"
+                                       },
+                     "git_branch":  "release-1.0.x"
+                 }
+             ],
     "Git_Configuration":  [
                               {
                                   "git_username":  "Ciaran28",
