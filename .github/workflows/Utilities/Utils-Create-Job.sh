@@ -53,29 +53,17 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg git_provider "$GIT_PROVIDER" \
                     --arg git_url "$REPO_URL" \
                     --arg CLUSTER_ID "$CLUSTER_ID" \
-                    '{ "tasks": [ 
-                            {
-                                "task_key": "TaskOne",
-                                "existing_cluster_id": $CLUSTER_ID,
-                                "notebook_task": { 
-                                    "notebook_path": "/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis", 
-                                    "source": "WORSKPACE"
-                                    }
-                            } 
-                        ] 
+                    '{
+                    "name": "Test_Job",
+                    "existing_cluster_id": "'$CLUSTER_ID'" ,
+                    "notebook_task": {"notebook_path": "/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis"}
                     }' )
+
                 
     
     echo $JSON_STRING
 
 
-
-    #name: $name,
-    #                "git_source": {
-    #                    "git_url": $git_url,
-    #                    "git_provider": $git_provider,
-    #                    "git_branch": $git_branch
-    #                },
 
     CREATE_JOB=$(curl -X POST -H "Authorization: Bearer $TOKEN" \
             -H "X-Databricks-Azure-SP-Management-Token: $MGMT_ACCESS_TOKEN" \
@@ -86,23 +74,6 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
     
 done
 
-
-    #createDatabricksJob=$(curl -X POST -H "Authorization: Bearer $token" -H "X-Databricks-Azure-SP-Management-Token: $mgmt_access_token" -H "X-Databricks-Azure-Workspace-Resource-Id: $wsId" -H "Content-Type: application/json" -d \
-    #'{
-    #    "name": "dbx-test-job",
-    #    "git_source": {
-    #        "git_url": "https://dev.azure.com/ciaranh0658/_git/devopsTemplates",
-    #        "git_provider": "azureDevOpsServices",
-    #        "git_branch": "master"
-    #    },
-    #    "tasks": [ 
-    #        {
-    #            "task_key": "devopsjob",
-    #            "existing_cluster_id": "'$clusterId'",
-    #            "notebook_task": { "notebook_path": "azureTemplates/yamlDatabricks/pythonScripts/main/testenv", "source": "GIT" }
-    #        } 
-    #    ]
-    #}' https://$workspaceUrl/api/2.1/jobs/create )
 
 
 
