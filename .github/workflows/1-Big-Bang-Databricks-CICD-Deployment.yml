@@ -17,9 +17,8 @@ jobs:
       runs-on:                  ubuntu-latest
       strategy:
         matrix:
-          # Aligns To Environment Parameter File Names
-          environments:          [Development]   
-          #environments:          [Development, UAT, PreProduction, Production] 
+          # Aligns To Environment Parameter File Names 
+          environments:          [Development, UAT, PreProduction, Production] 
       steps:
 
 # 1.  Checkout Branch
