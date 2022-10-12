@@ -65,7 +65,7 @@
     "Jobs":  [
 
                 {
-                    "name":  "Test Job",
+                    "name":  "Test_Job",
                     "cluster_name": "dbx-sp-cluster",
                     "notebook_task": {
                     "notebook_path": "DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis",
