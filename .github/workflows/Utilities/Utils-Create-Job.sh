@@ -54,17 +54,17 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg git_url "$REPO_URL" \
                     --arg CLUSTER_ID "$CLUSTER_ID" \
                     '{
-                        "name": "dbx-test-job",
+                        "name": "$name",
                         "git_source": {
-                            "git_url": "https://github.com/ciaran28/DatabricksAutomation",
-                            "git_provider": "gitHub",
-                            "git_branch": "main"
+                            "git_url": "$git_url",
+                            "git_provider": $git_provider,
+                            "git_branch": $git_branch
                         },
                         "tasks": [ 
                             {
-                                "task_key": "devopsjob",
-                                "existing_cluster_id": "1010-175730-znprugpy",
-                                "notebook_task": { "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis", "source": "GIT" }
+                                "task_key": "$name",
+                                "existing_cluster_id": "$CLUSTER_ID",
+                                "notebook_task": { "notebook_path": "$notebook_path", "source": "GIT" }
                             } 
                         ]
                     }' )

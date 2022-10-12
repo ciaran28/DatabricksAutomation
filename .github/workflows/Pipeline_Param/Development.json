@@ -65,10 +65,10 @@
     "Jobs":  [
 
                 {
-                    "name":  "Test_Job",
+                    "name":  "Test_Job_FINAL",
                     "cluster_name": "dbx-sp-cluster",
                     "notebook_task": {
-                    "notebook_path": "DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis",
+                    "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
                     "source": "GIT"
                     },
                     "git_branch": "main"  
