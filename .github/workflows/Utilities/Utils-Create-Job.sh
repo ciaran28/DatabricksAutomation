@@ -54,7 +54,7 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg git_url "$REPO_URL" \
                     --arg CLUSTER_ID "$CLUSTER_ID" \
                     '{
-                        "name": "$name",
+                        "name": $name,
                         "git_source": {
                             "git_url": $git_url,
                             "git_provider": $git_provider,
