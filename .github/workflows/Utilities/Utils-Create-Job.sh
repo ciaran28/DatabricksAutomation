@@ -53,26 +53,29 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                     --arg git_provider "$GIT_PROVIDER" \
                     --arg git_url "$REPO_URL" \
                     --arg CLUSTER_ID "$CLUSTER_ID" \
-                    '{name: $name,
-                    "git_source": {
-                        "git_url": $git_url,
-                        "git_provider": $git_provider,
-                        "git_branch": $git_branch
-                    },
-                    "tasks": [ 
-                        {
-                            "task_key": "TaskOne",
-                            "existing_cluster_id": $CLUSTER_ID,
-                            "notebook_task": { 
-                                "notebook_path": "/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis", 
-                                "source": "WORSKPACE"
-                                }
-                        } 
-                    ] 
+                    '{ "tasks": [ 
+                            {
+                                "task_key": "TaskOne",
+                                "existing_cluster_id": $CLUSTER_ID,
+                                "notebook_task": { 
+                                    "notebook_path": "/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis", 
+                                    "source": "WORSKPACE"
+                                    }
+                            } 
+                        ] 
                     }' )
                 
     
     echo $JSON_STRING
+
+
+
+    #name: $name,
+    #                "git_source": {
+    #                    "git_url": $git_url,
+    #                    "git_provider": $git_provider,
+    #                    "git_branch": $git_branch
+    #                },
 
     CREATE_JOB=$(curl -X POST -H "Authorization: Bearer $TOKEN" \
             -H "X-Databricks-Azure-SP-Management-Token: $MGMT_ACCESS_TOKEN" \
