@@ -64,7 +64,7 @@ for row in $(echo "${JSON}" | jq -r '.Jobs[] | @base64'); do
                             "task_key": $name,
                             "existing_cluster_id": $CLUSTER_ID,
                             "notebook_task": { 
-                                "notebook_path": $notebook_path, 
+                                "notebook_path": "/Repos/abcfe557-fd08-4f66-8887-66d6953aa939/DevelopmentFolder/src/tutorial/scripts/framework_testing/remote_analysis", 
                                 "source": $source 
                                 }
                         } 
