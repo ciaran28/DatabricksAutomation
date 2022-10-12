@@ -58,10 +58,10 @@ jobs:
 
 
 # 5.  Deploy Azure Resources    (BICEP) 
-        #- name:                 Deploy DBX CICD Azure Resources
-        #  run:                  bash ./.github/workflows/Utilities/Utils-Azure-Resources.sh
-        #  env:
-        #    environment:        ${{ matrix.environments }}
+        - name:                 Deploy DBX CICD Azure Resources
+          run:                  bash ./.github/workflows/Utilities/Utils-Azure-Resources.sh
+          env:
+            environment:        ${{ matrix.environments }}
 
 
 # 6.  __Order Important__ Asign RBAC Permission
@@ -84,12 +84,6 @@ jobs:
         - name:                 Set Environment Variables For Resources Created On The Fly.
           run:                  bash ./.github/workflows/Utilities/Utils-Env-Variables-For-Azure-Resources-Created.sh
 
-# Test Jobs
-        - name:                 Create Databricks Jobs
-          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
-          env:
-            environment:        ${{ matrix.environments }}
-
 # 9.  Set Up Python
         - name:                 Setup Python
           uses:                 actions/setup-python@v4
@@ -106,15 +100,20 @@ jobs:
         - name:                 Save Databricks SP Credentials Within Secret Scopes
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Scope.sh
 
+# 12.   Create Databricks Jobs (Linked To Git Repo)
+        - name:                 Create Databricks Jobs
+          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
+          env:
+            environment:        ${{ matrix.environments }}
 
-# 12. Databricks Clusters
+# 13. Databricks Clusters
         - name:                 Create Databricks Clusters
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Cluster.sh
           env:
             environment:        ${{ matrix.environments }}
 
 
-# 13. Databricks Git Config
+# 14. Databricks Git Config
         - name:                 Create Databricks Repos
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Repo-Folders.sh
           env:
@@ -123,13 +122,13 @@ jobs:
             ARM_CLIENT_ID:      ${{ secrets.ARM_CLIENT_ID }}
 
 
-# 14. Databricks CLI Config
+# 15. Databricks CLI Config
         - name:                   Install + Configure Databricks CLI
           run:                    bash ./.github/workflows/Utilities/Utils-DBX-CLI-Configure.sh
 
 
-# 15. Databricks Wheel File Creation + DBFS/Cluster Upload
-        #- name:                   Create Wheel Files & Upload To DBFS
-        #  run:                    bash ./.github/workflows/Utilities/Utils-Create-Wheels-DBFS-Cluster-Upload.sh
-        #  env:
-        #    environment:          ${{ matrix.environments }}
+# 16. Databricks Wheel File Creation + DBFS/Cluster Upload
+        - name:                   Create Wheel Files & Upload To DBFS
+          run:                    bash ./.github/workflows/Utilities/Utils-Create-Wheels-DBFS-Cluster-Upload.sh
+          env:
+            environment:          ${{ matrix.environments }}

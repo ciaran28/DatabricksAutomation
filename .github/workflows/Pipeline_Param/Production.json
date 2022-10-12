@@ -41,6 +41,17 @@
                                        }
                      }
                  ],
+    "Jobs": [
+                {
+                    "name":  "Remote_Analysis_Main_Branch",
+                    "cluster_name": "dbx-sp-cluster",
+                    "notebook_task": {
+                        "notebook_path": "src/tutorial/scripts/framework_testing/remote_analysis",
+                        "source": "GIT"
+                    },
+                    "git_branch": "release-1.0.x"  
+                }
+            ],
     "Git_Configuration":  [
                               {
                                   "git_username":  "Ciaran28",

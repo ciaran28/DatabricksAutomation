@@ -135,6 +135,11 @@ jobs:
           env:
             environment:        ${{ matrix.environments }}
 
+        - name:                 Create Databricks Jobs
+          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
+          env:
+            environment:        ${{ matrix.environments }}
+
 
         - name:                 Create DBX Repos
           run:                  sh ./.github/workflows/Utilities/Utils-Create-Repo-Folders.sh
@@ -146,6 +151,7 @@ jobs:
 
         - name:                   Install + Configure Databricks CLI
           run:                    bash ./.github/workflows/Utilities/Utils-DBX-CLI-Configure.sh
+
 
 
         #- name:                   Create Wheel Files & Upload To DBFS

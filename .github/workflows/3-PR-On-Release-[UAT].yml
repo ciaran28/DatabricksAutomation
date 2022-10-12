@@ -134,7 +134,15 @@ jobs:
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Scope.sh
         
 
-# 12. Databricks Clusters      
+
+# 12.   Create Databricks Jobs (Linked To Git Repo)
+        - name:                 Create Databricks Jobs
+          run:                  bash ./.github/workflows/Utilities/Utils-Create-Job.sh
+          env:
+            environment:        ${{ matrix.environments }}
+
+
+# 13. Databricks Clusters      
         - name:                 Create DBX Clusters
           if:                   steps.filter.outputs.workflows != 'true'
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Cluster.sh
@@ -142,7 +150,7 @@ jobs:
             environment:        ${{ matrix.environments }}
 
 
-# 13. Databricks Git Config
+# 14. Databricks Git Config
         - name:                 Create DBX Repos
           run:                  bash ./.github/workflows/Utilities/Utils-Create-Repo-Folders.sh
           env:
@@ -151,13 +159,13 @@ jobs:
             ARM_CLIENT_ID:      ${{ secrets.ARM_CLIENT_ID }}
 
 
-# 14. Databricks CLI Config
+# 15. Databricks CLI Config
         - name:                  Install + Configure Databricks CLI
           run:                   bash ./.github/workflows/Utilities/Utils-DBX-CLI-Configure.sh
 
 
 
-# 15. Update Databricks Git Repo 
+# 16. Update Databricks Git Repo 
         - name:                 Update Test Repo In Test Environment (Main Branch)
           run:                  bash ./.github/workflows/Utilities/Utils-Git-Pull-DBX-Repo.sh
           env:
@@ -165,7 +173,7 @@ jobs:
             UPDATE_FOLDER:      'UATFolder'
 
 
-# 16. Databricks Wheel File Creation + DBFS/Cluster Upload
+# 17. Databricks Wheel File Creation + DBFS/Cluster Upload
         - name:                   Create Wheel Files & Upload To DBFS
           if:                     steps.filter.outputs.workflows != 'true'
           run:                    bash ./.github/workflows/Utilities/Utils-Create-Wheels-DBFS-Cluster-Upload.sh
