@@ -46,14 +46,10 @@
 
 
 
-[![Youtube Demo](docs/images/YoutubeThumbNail.png)](<a href="http://..." target="_blank">external link</a>)
 
 ## Youtube Demo
 
-
-
-- Please find Demo for this Accelerator within the link: https://www.youtube.com/watch?v=lvL9kloToEw
-- **Video Not Yet Complete**
+[![Youtube Demo](docs/images/YoutubeThumbNail.png)](https://www.youtube.com/embed/lvL9kloToEw)
 ---
 
 ## About This Repository
