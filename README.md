@@ -44,6 +44,10 @@
 
 [![Youtube Demo](docs/images/YoutubeThumbNail.png)](https://www.youtube.com/embed/lvL9kloToEw)
 
+
+
+[![Youtube Demo](docs/images/YoutubeThumbNail.png)](<a href="http://..." target="_blank">external link</a>)
+
 ## Youtube Demo
 
 
