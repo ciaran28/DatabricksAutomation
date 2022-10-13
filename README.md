@@ -40,13 +40,6 @@
 ---
 ---
 
-
-
-[![Youtube Demo](docs/images/YoutubeThumbNail.png)](https://www.youtube.com/embed/lvL9kloToEw)
-
-
-
-
 ## Youtube Demo
 
 [![Youtube Demo](docs/images/YoutubeThumbNail.png)](https://www.youtube.com/embed/lvL9kloToEw)
