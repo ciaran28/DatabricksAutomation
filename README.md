@@ -40,9 +40,12 @@
 ---
 ---
 
+
+[![Databrick Youtube CICD](<img width="640" alt="image" src="https://user-images.githubusercontent.com/108273509/195618661-6703b545-bcd4-44ca-9383-a5e8614e8224.png">)(https://www.youtube.com/embed/lvL9kloToEw)
+
 ## Youtube Demo
 
-[![Databrick Youtube CICD](https://www.youtube.com/watch?v=lvL9kloToEw/maxresdefault.jpg)](https://www.youtube.com/embed/lvL9kloToEw) </br>
+
 
 - Please find Demo for this Accelerator within the link: https://www.youtube.com/watch?v=lvL9kloToEw
 - **Video Not Yet Complete**
