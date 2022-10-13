@@ -41,7 +41,8 @@
 ---
 
 
-[![Databrick Youtube CICD](<img width="640" alt="image" src="https://user-images.githubusercontent.com/108273509/195618661-6703b545-bcd4-44ca-9383-a5e8614e8224.png">)(https://www.youtube.com/embed/lvL9kloToEw)
+
+![](<img width="640" alt="image" src="https://user-images.githubusercontent.com/108273509/195619587-d0b1b737-c346-43a2-bed5-70b80f0528a3.png">)
 
 ## Youtube Demo
 
